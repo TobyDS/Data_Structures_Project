@@ -18,14 +18,19 @@ using namespace std;
 struct Node
 {
     int key;
-    Node * next;
+    Node *next;
 };
 
 class LinkedList
 {
-    private:
-        Node* head; // pointer to head of linked list
+private:
+    Node *head; // pointer to head of linked list
 
-    public:
-
+public:
+    // Complete the definition of the following methods in ll.cpp
+    LinkedList();                 // Linked List Constructor
+    ~LinkedList();                // Linked List Deconstructor
+    void insertNode(Node *, int); // Inserts a single node
+    Node *searchLL(int);          // Searches ll for a Node
+    void printLL();               // Prints the contense of LL
 };
