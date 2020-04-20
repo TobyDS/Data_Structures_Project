@@ -6,7 +6,7 @@
 *
 * NOTES :
 * 
-* AUTHOR :    Toby Dixon Smith      START DATE :    20 Apr 20
+* AUTHORS : Toby Dixon Smith & Vinicius Pelissari     START DATE : 20 Apr 20
 *
 *H*/
 
