@@ -36,7 +36,7 @@ LinkedList::LinkedList()
 */
 LinkedList::~LinkedList()
 {
-    if(head == NULL)
+    if (head == NULL)
     {
         return;
     }
@@ -44,7 +44,7 @@ LinkedList::~LinkedList()
     {
         Node *current = head;
         Node *next;
-        while(current != NULL)
+        while (current != NULL)
         {
             next = current->next;
             delete current;
@@ -66,14 +66,14 @@ LinkedList::~LinkedList()
 */
 void LinkedList::insertNode(Node *previous, int key)
 {
-    if(head == NULL)
+    if (head == NULL)
     {
         Node *nn = new Node;
         nn->key = key;
         nn->next = NULL;
         head = nn;
     }
-    else if(previous == NULL)
+    else if (previous == NULL)
     {
         Node *nn = new Node;
         nn->key = key;
@@ -89,7 +89,6 @@ void LinkedList::insertNode(Node *previous, int key)
         previous->next = nn;
         nn->next = prevNext;
     }
-    
 }
 
 /*
@@ -106,9 +105,9 @@ Node *LinkedList::searchLL(int key)
 {
     Node *current = new Node;
     current = head;
-    while(current != NULL)
+    while (current != NULL)
     {
-        if(current->key == key)
+        if (current->key == key)
         {
             return current;
         }
@@ -128,7 +127,7 @@ Node *LinkedList::searchLL(int key)
 */
 void LinkedList::printLL()
 {
-    if(head == NULL)
+    if (head == NULL)
     {
         cout << "Error: No items in list" << endl;
     }
@@ -139,7 +138,7 @@ void LinkedList::printLL()
         current = head;
         cout << "Printing Linked List:" << endl;
         cout << "=====" << endl;
-        while(current != NULL)
+        while (current != NULL)
         {
             cout << current->key << endl;
             current = current->next;
