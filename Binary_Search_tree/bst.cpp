@@ -1,14 +1,3 @@
-/*H**********************************************************************
-* FILENAME :        bst.cpp
-*
-* DESCRIPTION :
-*       File contains implementation for binary search tree     
-*
-* NOTES :
-* 
-* AUTHORS : Toby Dixon Smith & Vinicius Pelissari     START DATE : 20 Apr 20
-*
-*H*/
 #include "bst.hpp"
 
 using namespace std;
