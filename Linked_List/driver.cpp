@@ -107,6 +107,39 @@ void generateRandomInt(int randInts[], int maximum, int count)
     }
 }
 
+void generateCSV(double insert[], double search[], int count, string setName)
+{
+    ofstream outputFile;
+    if (setName == "A")
+    {
+        outputFile.open("Outputs/insert_search_performance_linked_list_dataSetA.csv");
+    }
+    else if (setName == "B")
+    {
+        outputFile.open("Outputs/insert_search_performance_linked_list_dataSetB.csv");
+    }
+    if (outputFile.is_open())
+    {
+        for (int i = 0; i < count; i++)
+        {
+            outputFile << (i + 1) << "," << insert[i] << "," << search[i] << endl;
+        }
+        outputFile.close();
+        cout << "=== Testing Compleate ===" << endl
+             << endl;
+        cout << "Find results in Outputs folder under the name:";
+        if (setName == "A")
+        {
+            cout << "insert_search_performance_linked_list_dataSetA.csv" << endl;
+        }
+        else if (setName == "B")
+        {
+            cout << "insert_search_performance_linked_list_dataSetB.csv" << endl;
+        }
+        cout << "CSV structure: Iteration, insert time [s], search time[s]" << endl << endl;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     srand(time(0));                    // Use current time as seed for random generator
@@ -131,6 +164,7 @@ int main(int argc, char *argv[])
                 dataPath = "../Data/dataSetB.csv";
             }
             readData(testData, dataPath);
+            cout << "=== Conducting test on data set : " << setName << " ===" << endl;
             // INSERTION INTO LL, SEARCHING LL AND TIME CALCULATION
             for (int numEntries = 0; numEntries < MAX_ELEMENTS; numEntries += 100)
             {
@@ -161,13 +195,15 @@ int main(int argc, char *argv[])
                 search[numEntries / 100] = averageTimeTaken;                                 // Log time taken to search
 
                 // TEST PRINT
-                if (numEntries % (MAX_ELEMENTS / 5) == 0) // Print 10 average times as test
-                {
-                    cout << fixed << setprecision(9);
-                    cout << "Average insertion time: " << insert[numEntries / 100] << " sec" << endl;
-                    cout << "Average search time: \t" << search[numEntries / 100] << " sec" << endl;
-                }
+                // if (numEntries % (MAX_ELEMENTS / 5) == 0) // Print 10 average times as test
+                // {
+                //     cout << fixed << setprecision(9);
+                //     cout << "Average insertion time: " << insert[numEntries / 100] << " sec" << endl;
+                //     cout << "Average search time: \t" << search[numEntries / 100] << " sec" << endl;
+                // }
             }
+            generateCSV(insert, search, MAX_ELEMENTS / 100, setName);
+            cout << "END OF PROGRAM" << endl;
         }
         else // Incorrect name for data set
         {
