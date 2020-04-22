@@ -28,8 +28,10 @@ class bst
     Node* head; //Pointer to the root of BST
 
     public:
-    bst();
-    ~bst();
-    void add_node(int key);
+    bst();                      //done 
+    ~bst();                     //todo 
+    void add_node(int key);     //done, not tested 
+    Node* search_key(int key);  //done, not tested
+    int delete_node(int key);   //todo
 
 };
