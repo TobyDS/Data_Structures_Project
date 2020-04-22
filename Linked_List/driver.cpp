@@ -107,6 +107,18 @@ void generateRandomInt(int randInts[], int maximum, int count)
     }
 }
 
+/* 
+ *  Function:  generateCSV
+ * --------------------
+ *  Generates a CSV file to store results of insert and search
+ * 
+ *  insert: an array of doubles containing insert times in seconds
+ *  search: an array of doubles containing search times in seconds
+ *  count: the number of entries in insert and search
+ *  setName: string of which set was tested
+ * 
+ *  returns: a CSV file containing the information
+*/
 void generateCSV(double insert[], double search[], int count, string setName)
 {
     ofstream outputFile;
