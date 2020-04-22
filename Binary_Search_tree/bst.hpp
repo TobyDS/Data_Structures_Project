@@ -33,5 +33,6 @@ public:
     void addNode(int key);    // Inserts a node into BST : Done, not tested
     Node *searchKey(int key); // Searches BST for a Node : Done, not tested
     int deleteNode(int key);  // Deletes a Node from BST : TODO
-    void printTree();          // Print BST : Could be done for testing
+    void printTree();
+    Node* parent(int key);          // Print BST : Could be done for testing
 };
