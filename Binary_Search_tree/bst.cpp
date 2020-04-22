@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*H**********************************************************************
 * FILENAME :        bst.cpp
 *
@@ -11,7 +9,6 @@
 * AUTHORS : Toby Dixon Smith & Vinicius Pelissari     START DATE : 20 Apr 20
 *
 *H*/
->>>>>>> caa23a6664e7991ac3dd1731b078e1b76d7f2f31
 #include "bst.hpp"
 
 using namespace std;
