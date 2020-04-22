@@ -13,58 +13,72 @@
 
 using namespace std;
 
+/*
+ *  Function:  bst
+ * --------------------
+ *  Constructs an empty binary search tree
+ * 
+ *  returns: none
+*/
 bst::bst()
 {
     head = NULL;
 }
 
-bst::~bst() //todo
-{
-
-}
-
-
 /*
- *  Function:  add_node
+ *  Function:  ~bst
  * --------------------
- *  Adds node with key to bst
+ *  Deconstructs a binary search tree
  * 
  *  returns: none
 */
-void bst::add_node(int key)
+bst::~bst() // TODO
 {
-    if(head==NULL)
+}
+
+/*
+ *  Function:  addNode
+ * --------------------
+ *  Adds node with key into bst
+ * 
+ *  key: the key to give inserted node
+ * 
+ *  returns: none
+*/
+void bst::addNode(int key)
+{
+    if (head == NULL)
     {
-        Node* n = new Node;
+        Node *n = new Node;
         n->key = key;
         head = n;
         return;
     }
-    Node* p=head;
+    Node *p = head;
 
-    while(1)
+    while (true)
     {
-        if(key>head->key)
+        if (key > head->key)
         {
-            if(p->right==NULL)
+            if (p->rightChild == NULL)
             {
-                Node* n = new Node;
+                Node *n = new Node;
                 n->key = key;
-                p->right = n;
+                p->rightChild = n;
                 return;
             }
-            p=p->right;
+            p = p->rightChild;
         }
-        else if(key<head->key)
+        else if (key < head->key)
         {
-            if(p->left==NULL)
+            if (p->leftChild == NULL)
             {
-                Node* n = new Node;
+                Node *n = new Node;
                 n->key = key;
-                p->left = n;
+                p->leftChild = n;
                 return;
             }
-            p=p->left;
+            p = p->leftChild;
         }
     }
 }
@@ -74,25 +88,28 @@ void bst::add_node(int key)
  * ---------------------
  *  Searches for key in the tree
  * 
- *  returns: address of Node with given key or NULL if not found
+ *  key: the key to search for
+ * 
+ *  returns: to the Node with given key 
+ *           or NULL if not found
 */
-Node* bst::search_key(int key)
+Node *bst::searchKey(int key)
 {
-    Node* traverse_Node = head;
+    Node *traverseNode = head;
 
-    while(traverse_Node!=NULL)
+    while (traverseNode != NULL)
     {
-        if(traverse_Node->key==key)
+        if (traverseNode->key == key)
         {
-            return traverse_Node;
+            return traverseNode;
         }
-        else if(key>traverse_Node->key)
+        else if (key > traverseNode->key)
         {
-            traverse_Node = traverse_Node->right;
+            traverseNode = traverseNode->rightChild;
         }
-        else if(key<traverse_Node->key)
+        else if (key < traverseNode->key)
         {
-            traverse_Node = traverse_Node->left;
+            traverseNode = traverseNode->leftChild;
         }
     }
     return NULL;

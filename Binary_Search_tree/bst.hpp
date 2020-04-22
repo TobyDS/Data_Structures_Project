@@ -15,23 +15,23 @@
 
 using namespace std;
 
-typedef struct _Node
+struct Node
 {
-    int key;    
-    Node* left = NULL;
-    Node* right = NULL;
-}Node;
+    int key;
+    Node *leftChild = NULL;
+    Node *rightChild = NULL;
+};
 
 class bst
 {
-    private:
-    Node* head; //Pointer to the root of BST
+private:
+    Node *head; //Pointer to the root of BST
 
-    public:
-    bst();                      //done 
-    ~bst();                     //todo 
-    void add_node(int key);     //done, not tested 
-    Node* search_key(int key);  //done, not tested
-    int delete_node(int key);   //todo
-
+public:
+    bst();                     // Binary Search Tree Constructor : Done
+    ~bst();                    // Binary Search Tree Deconstructor TODO
+    void addNode(int key);    // Inserts a node into BST : Done, not tested
+    Node *searchKey(int key); // Searches BST for a Node : Done, not tested
+    int deleteNode(int key);  // Deletes a Node from BST : TODO
+    void printTree();          // Print BST : Could be done for testing
 };
