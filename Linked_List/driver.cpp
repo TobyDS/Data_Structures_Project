@@ -15,6 +15,7 @@
 #include <chrono>
 #include <iomanip>
 #include <fstream>
+#include <time.h>
 #include "ll.hpp"
 
 using namespace std;
@@ -86,13 +87,34 @@ void insertIntoLL(LinkedList &l, int insertData[], int startIndex, int numToInse
     }
 }
 
+/* 
+ *  Function:  generateRandomInts
+ * --------------------
+ *  Populates an array with random integers bellow a given number
+ * 
+ *  randInts: an empty array to fill with random integers
+ *  maximum: the maximum value that can be generated
+ *  count: the number of ints to generate
+ * 
+ *  returns: nothing
+*/
+void generateRandomInt(int randInts[], int maximum, int count)
+{
+    for (int i = 0; i < count; i++)
+    {
+        int num = (rand() % (maximum + 1));
+        randInts[i] = num;
+    }
+}
+
 int main(int argc, char *argv[])
 {
-    LinkedList l;
-    int MAX_ELEMENTS = 40000;   // There are 40,000 data entries in CSVs
-    int testData[MAX_ELEMENTS]; // Contains all test data
-    double insert[400];         // Contains average time taken to insert an element (seconds)
-    double search[400];         // Contains times taken to search elements (seconds)
+    srand(time(0));                    // Use current time as seed for random generator
+    LinkedList l;                      // Create linked list object
+    int MAX_ELEMENTS = 40000;          // There are 40,000 data entries in CSVs
+    int testData[MAX_ELEMENTS];        // Contains all test data
+    double insert[MAX_ELEMENTS / 100]; // Contains average time taken to insert an element (seconds)
+    double search[MAX_ELEMENTS / 100]; // Contains times taken to search elements (seconds)
 
     if (argc == 2) // Correct number of command line args
     {
@@ -109,9 +131,10 @@ int main(int argc, char *argv[])
                 dataPath = "../Data/dataSetB.csv";
             }
             readData(testData, dataPath);
-            // INSERTION INTO LL AND TIMING CALCULATION
+            // INSERTION INTO LL, SEARCHING LL AND TIME CALCULATION
             for (int numEntries = 0; numEntries < MAX_ELEMENTS; numEntries += 100)
             {
+                // INSERTION
                 auto start = chrono::high_resolution_clock::now();                                  // Start clock
                 insertIntoLL(l, testData, numEntries, 100);                                         // Insert 100 entries
                 auto end = chrono::high_resolution_clock::now();                                    // Stop the clock
@@ -119,10 +142,30 @@ int main(int argc, char *argv[])
                 timeTaken *= 1e-9;                                                                  // Convert from nano seconds into seconds
                 double averageTimeTaken = timeTaken / 100;                                          // Find average entry time
                 insert[numEntries / 100] = averageTimeTaken;                                        // Log time taken for average entry
-                
-                if(numEntries % 4000 == 0) // Print a 10 entries as test
+                // SEARCHING
+                int randInts[100];
+                generateRandomInt(randInts, numEntries + 99, 100); // Generate rand int for size of entries
+                for (int i = 0; i < 100; i++)                      // Switch the index for the key to search for
                 {
-                    cout << "Average insertion time: " << averageTimeTaken*1e9 << setprecision(4) << " nanosec" << endl;
+                    randInts[i] = testData[randInts[i]];
+                }
+                start = chrono::high_resolution_clock::now(); // Start clock
+                for (int i = 0; i < 100; i++)                 // Loop through all 100 entries
+                {
+                    l.searchLL(randInts[i]); // Search for each randomly generated key
+                }
+                end = chrono::high_resolution_clock::now();                                  // Stop clock
+                timeTaken = chrono::duration_cast<chrono::nanoseconds>(end - start).count(); // Calculate time taken in nano seconds
+                timeTaken *= 1e-9;                                                           // Convert from nano seconds into seconds
+                averageTimeTaken = timeTaken / 100;                                          // Find average entry time
+                search[numEntries / 100] = averageTimeTaken;                                 // Log time taken to search
+
+                // TEST PRINT
+                if (numEntries % (MAX_ELEMENTS / 5) == 0) // Print 10 average times as test
+                {
+                    cout << fixed << setprecision(9);
+                    cout << "Average insertion time: " << insert[numEntries / 100] << " sec" << endl;
+                    cout << "Average search time: \t" << search[numEntries / 100] << " sec" << endl;
                 }
             }
         }
