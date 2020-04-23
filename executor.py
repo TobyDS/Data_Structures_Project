@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
 import subprocess
 import os
 
@@ -27,7 +26,7 @@ def plotDataSet(structureName, dataSetName):
     df["Insert Time"] = 1e6 * df["Insert Time"]
     df["Search Time"] = 1e6 * df["Search Time"]
 
-    fig = plt.figure(figsize=(7.2,4.8),dpi=200)
+    plt.figure(figsize=(7.2,4.8),dpi=200)
     ax = plt.gca()  # Get current x-axis (allows for multiple plots)
     # Plot both sets of times as line graphs
     df.plot(kind='line', x='Iteration', y='Insert Time', ax=ax)
@@ -40,7 +39,6 @@ def plotDataSet(structureName, dataSetName):
     ax.legend(["Avg insertion times", "Avg search times"], loc='lower center', bbox_to_anchor=(0.5, 1.01), ncol=2,
               borderaxespad=0, frameon=False, prop={'size': 8})
     
-    print(fig.get_size_inches())
 
     plt.savefig('./Graphs/'+structureName+'_'+dataSetName+'.png')
     plt.show()
