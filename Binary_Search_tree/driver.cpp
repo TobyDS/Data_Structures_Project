@@ -124,11 +124,11 @@ void generateCSV(double insert[], double search[], int count, string setName)
     ofstream outputFile;
     if (setName == "A")
     {
-        outputFile.open("Outputs/insert_search_performance_linked_list_dataSetA.csv");
+        outputFile.open("Outputs/insert_search_performance_binary_search_tree_dataSetA.csv");
     }
     else if (setName == "B")
     {
-        outputFile.open("Outputs/insert_search_performance_linked_list_dataSetB.csv");
+        outputFile.open("Outputs/insert_search_performance_binary_search_tree_dataSetB.csv");
     }
     if (outputFile.is_open())
     {
