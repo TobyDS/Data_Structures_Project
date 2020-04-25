@@ -22,7 +22,7 @@ using namespace std;
 */
 bst::bst()
 {
-    head = NULL;
+    root = NULL;
 }
 
 void delete_postorder(Node* n)
@@ -41,9 +41,9 @@ void delete_postorder(Node* n)
  * 
  *  returns: none
 */
-bst::~bst() // TODO
+bst::~bst()
 {
-    delete_postorder(head);
+    delete_postorder(root);
     return;
 }
 
@@ -58,18 +58,18 @@ bst::~bst() // TODO
 */
 void bst::addNode(int key)
 {
-    if (head == NULL)
+    if (root == NULL)
     {
         Node *n = new Node;
         n->key = key;
-        head = n;
+        root = n;
         return;
     }
-    Node *p = head;
+    Node *p = root;
 
     while (true)
     {
-        if (key > head->key)
+        if (key > root->key)
         {
             if (p->rightChild == NULL)
             {
@@ -80,7 +80,7 @@ void bst::addNode(int key)
             }
             p = p->rightChild;
         }
-        else if (key < head->key)
+        else if (key < root->key)
         {
             if (p->leftChild == NULL)
             {
@@ -106,7 +106,7 @@ void bst::addNode(int key)
 */
 Node* bst::searchKey(int key)
 {
-    Node *traverseNode = head;
+    Node *traverseNode = root;
 
     while (traverseNode != NULL)
     {
@@ -126,5 +126,20 @@ Node* bst::searchKey(int key)
     return NULL;
 }
 
+void inOrder(Node *curr)
+{
+    if(curr == NULL)
+    {
+        return;
+    }
+    inOrder(curr->leftChild);
+    cout << curr->key << " ";
+    inOrder(curr->rightChild);
+}
 
+void bst::printInOrder()
+{
+    inOrder(root);
+    cout << endl;
+}
 

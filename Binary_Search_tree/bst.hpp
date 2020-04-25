@@ -25,12 +25,12 @@ struct Node
 class bst
 {
 private:
-    Node *head; //Pointer to the root of BST
+    Node *root; //Pointer to the root of BST
 
 public:
     bst();                    // Binary Search Tree Constructor : Done
     ~bst();                   // Binary Search Tree Deconstructor Done, not tested
     void addNode(int key);    // Inserts a node into BST : Done, not tested
     Node* searchKey(int key); // Searches BST for a Node : Done, not tested
-    void printTree();         // Print BST : Could be done for testing
+    void printInOrder();      // Print BST : Could be done for testing
 };

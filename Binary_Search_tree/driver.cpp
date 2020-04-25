@@ -79,11 +79,11 @@ void readData(int testData[], string dataPath)
  * 
  *  returns: nothing
 */
-void insertIntoBst(bst &l, int insertData[], int startIndex, int numToInsert) //change this
+void insertIntoBst(bst &b, int insertData[], int startIndex, int numToInsert) //change this
 {
     for (int i = startIndex; i < startIndex + numToInsert; i++) // Insert numbers form start index to end index
     {
-        b.addNode(NULL, insertData[i]); // Insert all node as the start of the linked list.
+        b.addNode(insertData[i]); // Insert all node as the start of the linked list.
     }
 }
 
