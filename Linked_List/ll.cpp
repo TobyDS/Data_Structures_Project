@@ -28,7 +28,7 @@ LinkedList::LinkedList()
 }
 
 /*
- *  Function:  LinkedList
+ *  Function:  ~LinkedList
  * --------------------
  *  Deconstructs a linked list
  * 
