@@ -2,4 +2,4 @@
 .vscode
 **/*.out
 */*/*.csv
-Graphs/*
+Graphs/*.png
