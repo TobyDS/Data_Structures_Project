@@ -15,13 +15,27 @@ def runProgram(structureName, dataSet):
         # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
         os.system("./driver.out "+dataSet+"> /dev/null 2>&1")
         os.chdir('..')  # Reset directory
+    elif(structureName == "Binary_Search_Tree"):
+        # print("Compiling driver.cpp")
+        subprocess.call(["g++", "-std=c++11", "./Binary_Search_Tree/bst.cpp",
+                         "./Binary_Search_Tree/driver.cpp", "-o""./Binary_Search_Tree/driver.out"])  # Compiles program
+        print("Binary Search Tree: Running driver.out on dataSet"+dataSet)
+        # Change directory (this prevents path errors in c++ program)
+        os.chdir('./Binary_Search_Tree/')
+        # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
+        os.system("./driver.out "+dataSet+"> /dev/null 2>&1")
+        os.chdir('..')  # Reset directory
 
 
 def plotDataSet(structureName, dataSetName):
     header_list = ["Iteration", "Insert Time",
                    "Search Time"]  # Assign column headers
-    df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_linked_list_' +
-                     dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
+    if(structureName == "Linked_List"):
+        df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_linked_list_' +
+                        dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
+    elif(structureName == "Binary_Search_Tree"):
+        df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_binary_search_tree_' +
+                         dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
     # Change times from seconds to microseconds for ease of graph reading
     df["Insert Time"] = 1e6 * df["Insert Time"]
     df["Search Time"] = 1e6 * df["Search Time"]
@@ -48,6 +62,10 @@ def plotDataSet(structureName, dataSetName):
 
 runProgram("Linked_List", "A")
 runProgram("Linked_List", "B")
+runProgram("Binary_Search_Tree", "A")
+runProgram("Binary_Search_Tree", "B")
 print("-------------------")
 plotDataSet('Linked_List', 'dataSetA')
 plotDataSet('Linked_List', 'dataSetB')
+plotDataSet('Binary_Search_Tree', 'dataSetA')
+plotDataSet('Binary_Search_Tree', 'dataSetB')
