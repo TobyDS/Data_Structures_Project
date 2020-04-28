@@ -39,11 +39,24 @@ HashTable::HashTable(int bsize)
 
 HashTable::~HashTable() //TODO
 {
+    node *n, *next;
+    for(int i = 0; i<tableSize; i++)
+    {
+        n = table[i];
+        while (n!=NULL)
+        {
+            next = n->next;
+            delete n;
+            n=next;
+        }
+    }
 
+    delete [] table;
+    return;
 }
 
 
-bool HashTable::insertItemLinear(int key) //linear probing
+bool HashTable::insertItemLinear(int key)
 {
     int idx;
     idx = key%tableSize;
@@ -69,7 +82,7 @@ bool HashTable::insertItemLinear(int key) //linear probing
     return true;
 }
 
-node* HashTable::searchItemLinear(int key)//linear probing search
+node* HashTable::searchItemLinear(int key)
 {
     int idx = key%tableSize;
     int initial = idx;
@@ -99,7 +112,7 @@ node* HashTable::searchItemLinear(int key)//linear probing search
     }
 }
 
-bool HashTable::insertItemQuadratic(int key) //quadratic probing TODO
+bool HashTable::insertItemQuadratic(int key)
 {
     int idx;
     idx = key%tableSize;
@@ -125,7 +138,7 @@ bool HashTable::insertItemQuadratic(int key) //quadratic probing TODO
     return true;
 }
 
-node* HashTable::searchItemQuadratic(int key)//quadratic probing search
+node* HashTable::searchItemQuadratic(int key)
 {
     unsigned int idx = key%tableSize;
     int i = 1;
@@ -152,7 +165,7 @@ node* HashTable::searchItemQuadratic(int key)//quadratic probing search
     }
 }
 
-bool HashTable::insertItemChain(int key) //Chaining
+bool HashTable::insertItemChain(int key)
 {
     int idx;
     idx = key%tableSize;
