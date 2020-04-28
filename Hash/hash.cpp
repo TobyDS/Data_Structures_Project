@@ -77,7 +77,7 @@ bool HashTable::insertItemLinear(int key)
 
     if(idx!=initial)
     {
-        numOfcolision++;
+        numOfCollision++;
     }
     return true;
 }
@@ -132,7 +132,7 @@ bool HashTable::insertItemQuadratic(int key)
 
     if(idx!=initial)
     {
-        numOfcolision++;
+        numOfCollision++;
     }
 
     return true;
@@ -178,7 +178,7 @@ bool HashTable::insertItemChain(int key)
         }
         node* newNode = createNode(key,NULL);
         n->next = newNode;
-        numOfcolision++;
+        numOfCollision++;
         return true;
     }
 
