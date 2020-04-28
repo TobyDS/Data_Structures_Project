@@ -68,22 +68,22 @@ void readData(int testData[], string dataPath)
 }
 
 /* 
- *  Function:  insertIntoLL
+ *  Function:  insertIntoBst
  * --------------------
- *  Inserts data from an array into a linked list
+ *  Inserts data from an array into a binary search tree
  * 
- *  l: a linked list to be inserted into
- *  insertData: an array of ints to be inserted into the linked list
+ *  b: a binary search tree to be inserted into
+ *  insertData: an array of ints to be inserted into the binary search tree
  *  startIndex: the index in the array to start inserting at
- *  numToInsert: the number of elements to insert into the linked list
+ *  numToInsert: the number of elements to insert into the binary search tree
  * 
  *  returns: nothing
 */
-void insertIntoBst(bst &b, int insertData[], int startIndex, int numToInsert) //change this
+void insertIntoBst(bst &b, int insertData[], int startIndex, int numToInsert)
 {
     for (int i = startIndex; i < startIndex + numToInsert; i++) // Insert numbers form start index to end index
     {
-        b.addNode(insertData[i]); // Insert all node as the start of the linked list.
+        b.addNode(insertData[i]);
     }
 }
 
@@ -142,20 +142,21 @@ void generateCSV(double insert[], double search[], int count, string setName)
         cout << "Find results in Outputs folder under the name:";
         if (setName == "A")
         {
-            cout << "insert_search_performance_linked_list_dataSetA.csv" << endl;
+            cout << "insert_search_performance_binary_search_tree_dataSetA.csv" << endl;
         }
         else if (setName == "B")
         {
-            cout << "insert_search_performance_linked_list_dataSetB.csv" << endl;
+            cout << "insert_search_performance_binary_search_tree_dataSetB.csv" << endl;
         }
-        cout << "CSV structure: Iteration, insert time [s], search time[s]" << endl << endl;
+        cout << "CSV structure: Iteration, insert time [s], search time[s]" << endl
+             << endl;
     }
 }
 
 int main(int argc, char *argv[])
 {
     srand(time(0));                    // Use current time as seed for random generator
-    bst b;                      // Create linked list object
+    bst b;                             // Create linked list object
     int MAX_ELEMENTS = 40000;          // There are 40,000 data entries in CSVs
     int testData[MAX_ELEMENTS];        // Contains all test data
     double insert[MAX_ELEMENTS / 100]; // Contains average time taken to insert an element (seconds)
@@ -177,7 +178,7 @@ int main(int argc, char *argv[])
             }
             readData(testData, dataPath);
             cout << "=== Conducting test on data set : " << setName << " ===" << endl;
-            // INSERTION INTO LL, SEARCHING LL AND TIME CALCULATION
+            // INSERTION INTO BST, SEARCHING BST AND TIME CALCULATION
             for (int numEntries = 0; numEntries < MAX_ELEMENTS; numEntries += 100)
             {
                 // INSERTION

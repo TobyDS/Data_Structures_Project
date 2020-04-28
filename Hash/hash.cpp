@@ -37,7 +37,7 @@ HashTable::HashTable(int bsize)
     return;
 }
 
-HashTable::~HashTable() //TODO
+HashTable::~HashTable()
 {
     node *n, *next;
     for(int i = 0; i<tableSize; i++)
@@ -110,6 +110,7 @@ node* HashTable::searchItemLinear(int key)
     {
         return table[idx];
     }
+    return NULL;
 }
 
 bool HashTable::insertItemQuadratic(int key)
@@ -163,6 +164,7 @@ node* HashTable::searchItemQuadratic(int key)
     {
         return table[idx];
     }
+    return NULL;
 }
 
 bool HashTable::insertItemChain(int key)

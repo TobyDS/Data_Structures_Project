@@ -22,6 +22,7 @@ class HashTable
     node* createNode(int key, node* next);
 public:
     HashTable(int bsize);  // Constructor
+    ~HashTable();  // Deconstructor
 
     // inserts a key into hash table
     bool insertItemLinear(int key);
