@@ -24,7 +24,7 @@ node* HashTable::createNode(int key, node* next)
 
 HashTable::HashTable(int bsize)
 {
-    node* *a = new node[bsize];
+    node* *a = new node*[bsize];
 
     table = a;
 
@@ -42,8 +42,8 @@ HashTable::~HashTable() //TODO
 
 }
 
-/*
-bool HashTable::insertItem(int key) //linear probing
+
+bool HashTable::insertItemLinear(int key) //linear probing
 {
     int idx;
     idx = key%tableSize;
@@ -67,9 +67,9 @@ bool HashTable::insertItem(int key) //linear probing
         numOfcolision++;
     }
     return true;
-}*/
+}
 
-/*node* HashTable::searchItem(int key)//linear probing search
+node* HashTable::searchItemLinear(int key)//linear probing search
 {
     int idx = key%tableSize;
     int initial = idx;
@@ -97,13 +97,14 @@ bool HashTable::insertItem(int key) //linear probing
     {
         return table[idx];
     }
-}*/
+}
 
-/*bool HashTable::insertItem(int key) //quadratic probing
+bool HashTable::insertItemQuadratic(int key) //quadratic probing TODO
 {
     int idx;
     idx = key%tableSize;
     int i = 1;
+    int initial =idx;
     while(table[idx%tableSize]!=NULL)
     {
         idx+= i^2;
@@ -122,9 +123,9 @@ bool HashTable::insertItem(int key) //linear probing
     }
 
     return true;
-}*/
+}
 
-node* HashTable::searchItem(int key)//quadratic probing search
+node* HashTable::searchItemQuadratic(int key)//quadratic probing search
 {
     unsigned int idx = key%tableSize;
     int i = 1;
@@ -151,7 +152,7 @@ node* HashTable::searchItem(int key)//quadratic probing search
     }
 }
 
-/*bool HashTable::insertItem(int key) //Chaining
+bool HashTable::insertItemChain(int key) //Chaining
 {
     int idx;
     idx = key%tableSize;
@@ -171,4 +172,27 @@ node* HashTable::searchItem(int key)//quadratic probing search
     table[idx] = createNode(key,NULL);
 
     return true;
-}*/
+}
+
+node* HashTable::searchItemChain(int key)
+{
+    unsigned int idx = key%tableSize;
+    node* n = table[idx];
+    while(n!=NULL&&n->key!=key)
+    {
+        if(n->next==NULL)
+        {
+            return NULL;
+        }
+        n=n->next;
+    }
+    if(n==NULL)
+    {
+        return NULL;
+    }
+    if(n->key==key)
+    {
+        return n;
+    }
+    return NULL;
+}

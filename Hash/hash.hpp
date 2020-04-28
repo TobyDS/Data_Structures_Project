@@ -18,13 +18,15 @@ class HashTable
 
     // Pointer to an array containing buckets
     node* *table;
-    int numOfcolision =0;
+    int numOfcolision = 0;
     node* createNode(int key, node* next);
 public:
     HashTable(int bsize);  // Constructor
 
     // inserts a key into hash table
-    bool insertItem(int key);
+    bool insertItemLinear(int key);
+    bool insertItemQuadratic(int key);
+    bool insertItemChain(int key);
 
     // hash function to map values to key
     unsigned int hashFunction(int key);
@@ -32,7 +34,9 @@ public:
     void printTable();
     int getNumOfCollision();
 
-    node* searchItem(int key);
+    node* searchItemLinear(int key);
+    node* searchItemQuadratic(int key);
+    node* searchItemChain(int key);
 };
 
 #endif
