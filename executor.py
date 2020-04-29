@@ -25,6 +25,36 @@ def runProgram(structureName, dataSet):
         # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
         os.system("./driver.out "+dataSet+"> /dev/null 2>&1")
         os.chdir('..')  # Reset directory
+    elif(structureName == "Hash_Table_Linear_Probing"):
+            # print("Compiling driverLinear.cpp")
+        subprocess.call(["g++", "-std=c++11", "./Hash/hash.cpp",
+                         "./Hash/driverLinear.cpp", "-o""./Hash/driverLinear.out"])  # Compiles program
+        print("Hash Table: Running driverLinear.out on dataSet"+dataSet)
+        # Change directory (this prevents path errors in c++ program)
+        os.chdir('./Hash/')
+        # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
+        os.system("./driverLinear.out "+dataSet+"> /dev/null 2>&1")
+        os.chdir('..')  # Reset directory
+    elif(structureName == "Hash_Table_Quadratic_Probing"):
+            # print("Compiling driverQuadratic.cpp")
+        subprocess.call(["g++", "-std=c++11", "./Hash/hash.cpp",
+                         "./Hash/driverQuadratic.cpp", "-o""./Hash/driverQuadratic.out"])  # Compiles program
+        print("Hash Table: Running driverQuadratic.out on dataSet"+dataSet)
+        # Change directory (this prevents path errors in c++ program)
+        os.chdir('./Hash/')
+        # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
+        os.system("./driverQuadratic.out "+dataSet+"> /dev/null 2>&1")
+        os.chdir('..')  # Reset directory
+    elif(structureName == "Hash_Table_Chaining"):
+        # print("Compiling driverChain.cpp")
+        subprocess.call(["g++", "-std=c++11", "./Hash/hash.cpp",
+                         "./Hash/driverChain.cpp", "-o""./Hash/driverChain.out"])  # Compiles program
+        print("Hash Table: Running driverChain.out on dataSet"+dataSet)
+        # Change directory (this prevents path errors in c++ program)
+        os.chdir('./Hash/')
+        # Execute on dataSet, redirect output so not shown (> /dev/null 2>&1)
+        os.system("./driverChain.out "+dataSet+"> /dev/null 2>&1")
+        os.chdir('..')  # Reset directory
 
 
 def plotDataSet(structureName, dataSetName):
@@ -35,7 +65,16 @@ def plotDataSet(structureName, dataSetName):
                         dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
     elif(structureName == "Binary_Search_Tree"):
         df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_binary_search_tree_' +
-                         dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
+                         dataSetName+'.csv', sep=',', names=header_list)  
+    elif(structureName == "Hash_Table_Linear_Probing"):
+        df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_linear_' +
+                         dataSetName+'.csv', sep=',', names=header_list)  
+    elif(structureName == "Hash_Table_Quadratic_Probing"):
+        df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_quadratic_' +
+                         dataSetName+'.csv', sep=',', names=header_list)
+    elif(structureName == "Hash_Table_Chaining"):
+        df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_chain_' +
+                         dataSetName+'.csv', sep=',', names=header_list)  
     # Change times from seconds to microseconds for ease of graph reading
     df["Insert Time"] = 1e6 * df["Insert Time"]
     df["Search Time"] = 1e6 * df["Search Time"]
@@ -64,8 +103,20 @@ runProgram("Linked_List", "A")
 runProgram("Linked_List", "B")
 runProgram("Binary_Search_Tree", "A")
 runProgram("Binary_Search_Tree", "B")
+runProgram("Hash_Table_Linear_Probing", "A")
+runProgram("Hash_Table_Linear_Probing", "B")
+runProgram("Hash_Table_Quadratic_Probing", "A")
+runProgram("Hash_Table_Quadratic_Probing", "B")
+runProgram("Hash_Table_Chaining", "A")
+runProgram("Hash_Table_Chaining", "B")
 print("-------------------")
 plotDataSet('Linked_List', 'dataSetA')
 plotDataSet('Linked_List', 'dataSetB')
 plotDataSet('Binary_Search_Tree', 'dataSetA')
 plotDataSet('Binary_Search_Tree', 'dataSetB')
+plotDataSet("Hash_Table_Linear_Probing", "dataSetA")
+plotDataSet("Hash_Table_Linear_Probing", "dataSetB")
+plotDataSet("Hash_Table_Quadratic_Probing", "dataSetA")
+plotDataSet("Hash_Table_Quadratic_Probing", "dataSetB")
+plotDataSet("Hash_Table_Chaining", "dataSetA")
+plotDataSet("Hash_Table_Chaining", "dataSetB")
