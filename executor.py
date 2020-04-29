@@ -26,7 +26,7 @@ def runProgram(structureName, dataSet):
         os.system("./driver.out "+dataSet+"> /dev/null 2>&1")
         os.chdir('..')  # Reset directory
     elif(structureName == "Hash_Table_Linear_Probing"):
-            # print("Compiling driverLinear.cpp")
+        # print("Compiling driverLinear.cpp")
         subprocess.call(["g++", "-std=c++11", "./Hash/hash.cpp",
                          "./Hash/driverLinear.cpp", "-o""./Hash/driverLinear.out"])  # Compiles program
         print("Hash Table: Running driverLinear.out on dataSet"+dataSet)
@@ -36,7 +36,7 @@ def runProgram(structureName, dataSet):
         os.system("./driverLinear.out "+dataSet+"> /dev/null 2>&1")
         os.chdir('..')  # Reset directory
     elif(structureName == "Hash_Table_Quadratic_Probing"):
-            # print("Compiling driverQuadratic.cpp")
+        # print("Compiling driverQuadratic.cpp")
         subprocess.call(["g++", "-std=c++11", "./Hash/hash.cpp",
                          "./Hash/driverQuadratic.cpp", "-o""./Hash/driverQuadratic.out"])  # Compiles program
         print("Hash Table: Running driverQuadratic.out on dataSet"+dataSet)
@@ -62,36 +62,35 @@ def plotDataSet(structureName, dataSetName):
                    "Search Time"]  # Assign column headers
     if(structureName == "Linked_List"):
         df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_linked_list_' +
-                        dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
+                         dataSetName+'.csv', sep=',', names=header_list)  # Read file into pandas dataframe
     elif(structureName == "Binary_Search_Tree"):
         df = pd.read_csv('./'+structureName+'/Outputs/insert_search_performance_binary_search_tree_' +
-                         dataSetName+'.csv', sep=',', names=header_list)  
+                         dataSetName+'.csv', sep=',', names=header_list)
     elif(structureName == "Hash_Table_Linear_Probing"):
         df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_linear_' +
-                         dataSetName+'.csv', sep=',', names=header_list)  
+                         dataSetName+'.csv', sep=',', names=header_list)
     elif(structureName == "Hash_Table_Quadratic_Probing"):
         df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_quadratic_' +
                          dataSetName+'.csv', sep=',', names=header_list)
     elif(structureName == "Hash_Table_Chaining"):
         df = pd.read_csv('./Hash/Outputs/insert_search_performance_hash_table_chain_' +
-                         dataSetName+'.csv', sep=',', names=header_list)  
+                         dataSetName+'.csv', sep=',', names=header_list)
     # Change times from seconds to microseconds for ease of graph reading
     df["Insert Time"] = 1e6 * df["Insert Time"]
     df["Search Time"] = 1e6 * df["Search Time"]
 
-    plt.figure(figsize=(7.2,4.8),dpi=200)
+    plt.figure(figsize=(7.2, 4.8), dpi=200)
     ax = plt.gca()  # Get current x-axis (allows for multiple plots)
     # Plot both sets of times as line graphs
     df.plot(kind='line', x='Iteration', y='Insert Time', ax=ax)
     df.plot(kind='line', x='Iteration', y='Search Time', color='red', ax=ax)
 
     plt.title(structureName.replace('_', ' ') +
-             ': Times for '+dataSetName, y=1.08,pad=1)
+              ': Times for '+dataSetName, y=1.08, pad=1)
     plt.ylabel('Time in microseconds')
 
     ax.legend(["Avg insertion times", "Avg search times"], loc='lower center', bbox_to_anchor=(0.5, 1.01), ncol=2,
               borderaxespad=0, frameon=False, prop={'size': 8})
-    
 
     plt.savefig('./Graphs/'+structureName+'_'+dataSetName+'.png')
     plt.show()
