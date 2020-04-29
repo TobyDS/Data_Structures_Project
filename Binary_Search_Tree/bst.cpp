@@ -25,9 +25,10 @@ bst::bst()
     root = NULL;
 }
 
-void delete_postorder(Node* n)
+void delete_postorder(Node *n)
 {
-    if(n==NULL) return;
+    if (n == NULL)
+        return;
     delete_postorder(n->leftChild);
     delete_postorder(n->rightChild);
     delete n;
@@ -95,7 +96,7 @@ void bst::addNode(int key)
 }
 
 /*
- *  Function: search_key
+ *  Function: searchKey
  * ---------------------
  *  Searches for key in the tree
  * 
@@ -104,7 +105,7 @@ void bst::addNode(int key)
  *  returns: to the Node with given key 
  *           or NULL if not found
 */
-Node* bst::searchKey(int key)
+Node *bst::searchKey(int key)
 {
     Node *traverseNode = root;
 
@@ -126,9 +127,19 @@ Node* bst::searchKey(int key)
     return NULL;
 }
 
+/*
+ *  Function: inOrder
+ * ---------------------
+ *  Performs in order traversal from a given node
+ * 
+ *  curr: the node to traverse from
+ * 
+ *  returns: the key of the current node
+ *  
+*/
 void inOrder(Node *curr)
 {
-    if(curr == NULL)
+    if (curr == NULL)
     {
         return;
     }
@@ -137,9 +148,16 @@ void inOrder(Node *curr)
     inOrder(curr->rightChild);
 }
 
+/*
+ *  Function: printInOrder
+ * ---------------------
+ *  Performs in order traversal from a root node
+ * 
+ *  returns: all node keys in order
+ *  
+*/
 void bst::printInOrder()
 {
     inOrder(root);
     cout << endl;
 }
-

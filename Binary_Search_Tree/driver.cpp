@@ -2,7 +2,7 @@
 * FILENAME :        driver.cpp
 *
 * DESCRIPTION :
-*       File tests Binary search Tree class
+*       File tests Binary Search Tree class
 *
 * NOTES :
 * 
@@ -88,7 +88,7 @@ void insertIntoBst(bst &b, int insertData[], int startIndex, int numToInsert)
 }
 
 /* 
- *  Function:  generateRandomInts
+ *  Function:  generateRandomInt
  * --------------------
  *  Populates an array with random integers bellow a given number
  * 
@@ -156,7 +156,7 @@ void generateCSV(double insert[], double search[], int count, string setName)
 int main(int argc, char *argv[])
 {
     srand(time(0));                    // Use current time as seed for random generator
-    bst b;                             // Create linked list object
+    bst b;                             // Create bst object
     int MAX_ELEMENTS = 40000;          // There are 40,000 data entries in CSVs
     int testData[MAX_ELEMENTS];        // Contains all test data
     double insert[MAX_ELEMENTS / 100]; // Contains average time taken to insert an element (seconds)

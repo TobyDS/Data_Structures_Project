@@ -83,12 +83,12 @@ void insertIntoHash(HashTable &h, int insertData[], int startIndex, int numToIns
 {
     for (int i = startIndex; i < startIndex + numToInsert; i++) // Insert numbers form start index to end index
     {
-        h.insertItemChain(insertData[i]); 
+        h.insertItemChain(insertData[i]);
     }
 }
 
 /* 
- *  Function:  generateRandomInts
+ *  Function:  generateRandomInt
  * --------------------
  *  Populates an array with random integers bellow a given number
  * 

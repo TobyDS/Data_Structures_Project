@@ -68,7 +68,7 @@ void readData(int testData[], string dataPath)
 }
 
 /* 
- *  Function:  insertIntoHah
+ *  Function:  insertIntoHash
  * --------------------
  *  Inserts data from an array into a hash table using linear probing
  * 
@@ -83,12 +83,12 @@ void insertIntoHash(HashTable &h, int insertData[], int startIndex, int numToIns
 {
     for (int i = startIndex; i < startIndex + numToInsert; i++) // Insert numbers form start index to end index
     {
-        h.insertItemLinear(insertData[i]); 
+        h.insertItemLinear(insertData[i]);
     }
 }
 
 /* 
- *  Function:  generateRandomInts
+ *  Function:  generateRandomInt
  * --------------------
  *  Populates an array with random integers bellow a given number
  * 

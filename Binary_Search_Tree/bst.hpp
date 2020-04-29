@@ -11,6 +11,9 @@
 *
 *H*/
 
+#ifndef BST_HPP
+#define BST_HPP
+
 #include <iostream>
 
 using namespace std;
@@ -28,9 +31,12 @@ private:
     Node *root; //Pointer to the root of BST
 
 public:
-    bst();                    // Binary Search Tree Constructor : Done
-    ~bst();                   // Binary Search Tree Deconstructor Done, not tested
-    void addNode(int key);    // Inserts a node into BST : Done, not tested
-    Node* searchKey(int key); // Searches BST for a Node : Done, not tested
-    void printInOrder();      // Print BST : Could be done for testing
+    bst();  // Binary Search Tree Constructor
+    ~bst(); // Binary Search Tree Deconstructor
+    // Member Functions
+    void addNode(int key);    // Inserts a node into BST
+    Node *searchKey(int key); // Searches BST for a Node
+    void printInOrder();      // Print BST in order
 };
+
+#endif

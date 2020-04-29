@@ -11,6 +11,9 @@
 *
 *H*/
 
+#ifndef LL_HPP
+#define LL_HPP
+
 #include <iostream>
 
 using namespace std;
@@ -27,10 +30,12 @@ private:
     Node *head; // pointer to head of linked list
 
 public:
-    // Complete the definition of the following methods in ll.cpp
-    LinkedList();                 // Linked List Constructor
-    ~LinkedList();                // Linked List Deconstructor
+    LinkedList();  // Linked List Constructor
+    ~LinkedList(); // Linked List Deconstructor
+    // Member Functions
     void insertNode(Node *, int); // Inserts a single node
     Node *searchLL(int);          // Searches ll for a Node
     void printLL();               // Prints the contense of LL
 };
+
+#endif

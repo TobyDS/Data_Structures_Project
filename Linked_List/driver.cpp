@@ -88,7 +88,7 @@ void insertIntoLL(LinkedList &l, int insertData[], int startIndex, int numToInse
 }
 
 /* 
- *  Function:  generateRandomInts
+ *  Function:  generateRandomInt
  * --------------------
  *  Populates an array with random integers bellow a given number
  * 
@@ -148,7 +148,8 @@ void generateCSV(double insert[], double search[], int count, string setName)
         {
             cout << "insert_search_performance_linked_list_dataSetB.csv" << endl;
         }
-        cout << "CSV structure: Iteration, insert time [s], search time[s]" << endl << endl;
+        cout << "CSV structure: Iteration, insert time [s], search time[s]" << endl
+             << endl;
     }
 }
 

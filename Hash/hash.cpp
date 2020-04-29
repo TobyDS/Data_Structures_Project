@@ -14,9 +14,9 @@
 #include "hash.hpp"
 
 //Class Functions
-node* HashTable::createNode(int key, node* next)
+node *HashTable::createNode(int key, node *next)
 {
-    node* n = new node;
+    node *n = new node;
     n->key = key;
     n->next = next;
     return n;
@@ -24,13 +24,13 @@ node* HashTable::createNode(int key, node* next)
 
 HashTable::HashTable(int bsize)
 {
-    node* *a = new node*[bsize];
+    node **a = new node *[bsize];
 
     table = a;
 
     tableSize = bsize;
 
-    for(int i = 0; i<tableSize ; i++)
+    for (int i = 0; i < tableSize; i++)
     {
         table[i] = NULL;
     }
@@ -40,73 +40,72 @@ HashTable::HashTable(int bsize)
 HashTable::~HashTable()
 {
     node *n, *next;
-    for(int i = 0; i<tableSize; i++)
+    for (int i = 0; i < tableSize; i++)
     {
         n = table[i];
-        while (n!=NULL)
+        while (n != NULL)
         {
             next = n->next;
             delete n;
-            n=next;
+            n = next;
         }
     }
 
-    delete [] table;
+    delete[] table;
     return;
 }
-
 
 bool HashTable::insertItemLinear(int key)
 {
     int idx;
-    idx = key%tableSize;
+    idx = key % tableSize;
     int initial = idx;
-    while(table[idx]!=NULL)
+    while (table[idx] != NULL)
     {
         idx++;
-        if(idx>=tableSize)
+        if (idx >= tableSize)
         {
-            idx=0;
+            idx = 0;
         }
-        if(idx==initial)
+        if (idx == initial)
         {
             return false;
         }
     }
-    table[idx]= createNode(key,NULL);
+    table[idx] = createNode(key, NULL);
 
-    if(idx!=initial)
+    if (idx != initial)
     {
         numOfCollision++;
     }
     return true;
 }
 
-node* HashTable::searchItemLinear(int key)
+node *HashTable::searchItemLinear(int key)
 {
-    int idx = key%tableSize;
+    int idx = key % tableSize;
     int initial = idx;
-    while(table[idx]!=NULL&&table[idx]->key!=key)
+    while (table[idx] != NULL && table[idx]->key != key)
     {
         idx++;
-        if(idx>=tableSize)
+        if (idx >= tableSize)
         {
             idx = 0;
         }
-        if(initial==idx)
+        if (initial == idx)
         {
             return NULL;
         }
-        if(table[idx]->key==key)
+        if (table[idx]->key == key)
         {
-            return table[idx]; 
+            return table[idx];
         }
     }
-    if(table[idx]==NULL)
+    if (table[idx] == NULL)
     {
         return NULL;
     }
-    if(table[idx]->key==key)
+    if (table[idx]->key == key)
     {
         return table[idx];
     }
@@ -116,22 +115,22 @@ node* HashTable::searchItemLinear(int key)
 bool HashTable::insertItemQuadratic(int key)
 {
     int idx;
-    idx = key%tableSize;
+    idx = key % tableSize;
     int i = 1;
-    int initial =idx;
-    while(table[idx%tableSize]!=NULL)
+    int initial = idx;
+    while (table[idx % tableSize] != NULL)
     {
-        idx+= i^2;
-        if(i==tableSize)
+        idx += i ^ 2;
+        if (i == tableSize)
         {
             return false;
         }
         i++;
     }
 
-    table[idx%tableSize]= createNode(key,NULL);
+    table[idx % tableSize] = createNode(key, NULL);
 
-    if(idx!=initial)
+    if (idx != initial)
     {
         numOfCollision++;
     }
@@ -139,28 +138,28 @@ bool HashTable::insertItemQuadratic(int key)
     return true;
 }
 
-node* HashTable::searchItemQuadratic(int key)
+node *HashTable::searchItemQuadratic(int key)
 {
-    unsigned int idx = key%tableSize;
+    unsigned int idx = key % tableSize;
     int i = 1;
-    while(table[idx%tableSize]!=NULL&&table[idx%tableSize]->key!=key)
+    while (table[idx % tableSize] != NULL && table[idx % tableSize]->key != key)
     {
-        idx+=i^2;
-        if(table[idx%tableSize]->key==key)
+        idx += i ^ 2;
+        if (table[idx % tableSize]->key == key)
         {
-            return table[idx%tableSize]; 
+            return table[idx % tableSize];
         }
         i++;
-        if(i>tableSize)
+        if (i > tableSize)
         {
             return NULL;
         }
     }
-    if(table[idx%tableSize]==NULL)
+    if (table[idx % tableSize] == NULL)
     {
         return NULL;
     }
-    if(table[idx%tableSize]->key==key)
+    if (table[idx % tableSize]->key == key)
     {
         return table[idx];
     }
@@ -170,42 +169,42 @@ node* HashTable::searchItemQuadratic(int key)
 bool HashTable::insertItemChain(int key)
 {
     int idx;
-    idx = key%tableSize;
-    if(table[idx]!=NULL)
+    idx = key % tableSize;
+    if (table[idx] != NULL)
     {
-        node* n= table[idx];
-        while(n->next!=NULL)
+        node *n = table[idx];
+        while (n->next != NULL)
         {
-            n=n->next;
+            n = n->next;
         }
-        node* newNode = createNode(key,NULL);
+        node *newNode = createNode(key, NULL);
         n->next = newNode;
         numOfCollision++;
         return true;
     }
 
-    table[idx] = createNode(key,NULL);
+    table[idx] = createNode(key, NULL);
 
     return true;
 }
 
-node* HashTable::searchItemChain(int key)
+node *HashTable::searchItemChain(int key)
 {
-    unsigned int idx = key%tableSize;
-    node* n = table[idx];
-    while(n!=NULL&&n->key!=key)
+    unsigned int idx = key % tableSize;
+    node *n = table[idx];
+    while (n != NULL && n->key != key)
     {
-        if(n->next==NULL)
+        if (n->next == NULL)
         {
             return NULL;
         }
-        n=n->next;
+        n = n->next;
     }
-    if(n==NULL)
+    if (n == NULL)
     {
         return NULL;
     }
-    if(n->key==key)
+    if (n->key == key)
     {
         return n;
     }

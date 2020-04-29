@@ -68,9 +68,9 @@ void readData(int testData[], string dataPath)
 }
 
 /* 
- *  Function:  insertIntoHah
+ *  Function:  insertIntoHash
  * --------------------
- *  Inserts data from an array into a hash table using linear probing
+ *  Inserts data from an array into a hash table using quadratic probing
  * 
  *  h: a hash table to be inserted into
  *  insertData: an array of ints to be inserted into the hash table
@@ -83,12 +83,12 @@ void insertIntoHash(HashTable &h, int insertData[], int startIndex, int numToIns
 {
     for (int i = startIndex; i < startIndex + numToInsert; i++) // Insert numbers form start index to end index
     {
-        h.insertItemQuadratic(insertData[i]); 
+        h.insertItemQuadratic(insertData[i]);
     }
 }
 
 /* 
- *  Function:  generateRandomInts
+ *  Function:  generateRandomInt
  * --------------------
  *  Populates an array with random integers bellow a given number
  * 
