@@ -146,7 +146,7 @@ node* HashTable::searchItemQuadratic(int key)
     while(table[idx%tableSize]!=NULL&&table[idx%tableSize]->key!=key)
     {
         idx+=i^2;
-        if(table[idx]->key==key)
+        if(table[idx%tableSize]->key==key)
         {
             return table[idx%tableSize]; 
         }
