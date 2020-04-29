@@ -1,3 +1,14 @@
+/*H**********************************************************************
+* FILENAME :        hash.hpp
+*
+* DESCRIPTION :
+*       File contains definition for Hash Table class
+*
+* NOTES :
+* 
+* AUTHORS : Toby Dixon Smith & Vinicius Pelissari     START DATE : 26 Apr 20
+*
+*H*/
 #ifndef HASH_HPP
 #define HASH_HPP
 
