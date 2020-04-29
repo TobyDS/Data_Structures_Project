@@ -43,7 +43,6 @@ public:
     // hash function to map values to key
     unsigned int hashFunction(int key);
 
-    void printTable();
     int getNumOfCollision();
 
     node* searchItemLinear(int key);

@@ -14,6 +14,16 @@
 #include "hash.hpp"
 
 //Class Functions
+
+/*
+ *  Function:  createNode
+ * --------------------
+ *  Creates a node in the heap
+ * 
+ *  key and next: node parameters
+ * 
+ *  returns: pointer to created node
+*/
 node* HashTable::createNode(int key, node* next)
 {
     node* n = new node;
@@ -22,6 +32,15 @@ node* HashTable::createNode(int key, node* next)
     return n;
 }
 
+/*
+ *  Function:  HashTable 
+ * --------------------
+ *  Creates a HashTable
+ * 
+ *  bsize: size of the table
+ * 
+ *  returns: none
+*/
 HashTable::HashTable(int bsize)
 {
     node* *a = new node*[bsize];
@@ -37,6 +56,13 @@ HashTable::HashTable(int bsize)
     return;
 }
 
+/*
+ *  Function:  ~HashTable 
+ * --------------------
+ *  Deconstrucs a HashTable
+ * 
+ *  returns: none
+*/
 HashTable::~HashTable()
 {
     node *n, *next;
@@ -55,7 +81,15 @@ HashTable::~HashTable()
     return;
 }
 
-
+/*
+ *  Function:   insertItemLinear
+ * --------------------
+ *  Inserts a key into HashTable using Linear Collision resolution
+ * 
+ *  key: value to be inserted
+ * 
+ *  returns: true if successfull, false if not
+*/
 bool HashTable::insertItemLinear(int key)
 {
     int idx;
@@ -82,6 +116,15 @@ bool HashTable::insertItemLinear(int key)
     return true;
 }
 
+/*
+ *  Function:   searchItemLinear
+ * --------------------
+ *  Searches a key in the HashTable considering Linear Collision resolution was used
+ * 
+ *  key: value to be searched
+ * 
+ *  returns: pointer to key if successful or NULL if not found
+*/
 node* HashTable::searchItemLinear(int key)
 {
     int idx = key%tableSize;
@@ -113,6 +156,15 @@ node* HashTable::searchItemLinear(int key)
     return NULL;
 }
 
+/*
+ *  Function:   insertItemQuadratic
+ * --------------------
+ *  Inserts a key into HashTable using Quadratic Collision resolution
+ * 
+ *  key: value to be inserted
+ * 
+ *  returns: true if successfull, false if not
+*/
 bool HashTable::insertItemQuadratic(int key)
 {
     int idx;
@@ -139,6 +191,15 @@ bool HashTable::insertItemQuadratic(int key)
     return true;
 }
 
+/*
+ *  Function:   searchItemQuadrati
+ * --------------------
+ *  Searches a key in the HashTable considering Quadrati Collision resolution was used
+ * 
+ *  key: value to be searched
+ * 
+ *  returns: pointer to key if successful or NULL if not found
+*/
 node* HashTable::searchItemQuadratic(int key)
 {
     unsigned int idx = key%tableSize;
@@ -167,6 +228,15 @@ node* HashTable::searchItemQuadratic(int key)
     return NULL;
 }
 
+/*
+ *  Function:   insertItemChain
+ * --------------------
+ *  Inserts a key into HashTable using Chaining Collision resolution
+ * 
+ *  key: value to be inserted
+ * 
+ *  returns: true if successfull, false if not
+*/
 bool HashTable::insertItemChain(int key)
 {
     int idx;
@@ -189,6 +259,15 @@ bool HashTable::insertItemChain(int key)
     return true;
 }
 
+/*
+ *  Function:   searchItemChain
+ * --------------------
+ *  Searches a key in the HashTable considering Chaining Collision resolution was used
+ * 
+ *  key: value to be searched
+ * 
+ *  returns: pointer to key if successful or NULL if not found
+*/
 node* HashTable::searchItemChain(int key)
 {
     unsigned int idx = key%tableSize;
@@ -210,4 +289,16 @@ node* HashTable::searchItemChain(int key)
         return n;
     }
     return NULL;
+}
+
+/*
+ *  Function:   getNumOfCollision
+ * --------------------
+ *  Returns number of collisions that happened while insertion
+ * 
+ *  returns: number of collisions
+*/
+int HashTable::getNumOfCollision()
+{
+    return numOfCollision;
 }
