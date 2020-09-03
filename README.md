@@ -27,8 +27,11 @@ This can be done using the following command in the terminal when Data_Structure
 ```bash
 $ python executor.py
 ```
-You will then find all graph generated in the Graphs directory
-
+You will then find all graphs generated in the Graphs directory.
+If you wish to view the graphs when they are generated use the ```-s``` flag as shown bellow.
+```bash
+$ python executor.py -s
+```
 ## How to install dependencies:
 ### Matplotlib:
 Using Andaconda or Miniconda:
