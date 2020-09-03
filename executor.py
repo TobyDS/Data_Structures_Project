@@ -2,7 +2,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import subprocess
 import os
+import platform
 
+print(platform.system())
 
 def runProgram(structureName, dataSet):
     if(structureName == "Linked_List"):
