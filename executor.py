@@ -3,8 +3,9 @@ import pandas as pd
 import subprocess
 import os
 import platform
+import sys
 
-print(platform.system())
+print("=== Identified system type: "+platform.system()+" ===")
 
 def runProgram(structureName, dataSet):
     if(structureName == "Linked_List"):
@@ -59,7 +60,7 @@ def runProgram(structureName, dataSet):
         os.chdir('..')  # Reset directory
 
 
-def plotDataSet(structureName, dataSetName):
+def plotDataSet(structureName, dataSetName, show):
     header_list = ["Iteration", "Insert Time",
                    "Search Time"]  # Assign column headers
     if(structureName == "Linked_List"):
@@ -95,10 +96,12 @@ def plotDataSet(structureName, dataSetName):
               borderaxespad=0, frameon=False, prop={'size': 8})
 
     plt.savefig('./Graphs/'+structureName+'_'+dataSetName+'.png')
-    plt.show()
+    if show: plt.show()
 
     print('Plot '+structureName+'_'+dataSetName+'.png saved in Graphs Folder')
 
+
+show = True if len(sys.argv) > 1 and sys.argv[1] == "-s" else False
 
 runProgram("Linked_List", "A")
 runProgram("Linked_List", "B")
@@ -111,13 +114,13 @@ runProgram("Hash_Table_Quadratic_Probing", "B")
 runProgram("Hash_Table_Chaining", "A")
 runProgram("Hash_Table_Chaining", "B")
 print("-------------------")
-plotDataSet('Linked_List', 'dataSetA')
-plotDataSet('Linked_List', 'dataSetB')
-plotDataSet('Binary_Search_Tree', 'dataSetA')
-plotDataSet('Binary_Search_Tree', 'dataSetB')
-plotDataSet("Hash_Table_Linear_Probing", "dataSetA")
-plotDataSet("Hash_Table_Linear_Probing", "dataSetB")
-plotDataSet("Hash_Table_Quadratic_Probing", "dataSetA")
-plotDataSet("Hash_Table_Quadratic_Probing", "dataSetB")
-plotDataSet("Hash_Table_Chaining", "dataSetA")
-plotDataSet("Hash_Table_Chaining", "dataSetB")
+plotDataSet('Linked_List', 'dataSetA', show)
+plotDataSet('Linked_List', 'dataSetB', show)
+plotDataSet('Binary_Search_Tree', 'dataSetA', show)
+plotDataSet('Binary_Search_Tree', 'dataSetB', show)
+plotDataSet("Hash_Table_Linear_Probing", "dataSetA", show)
+plotDataSet("Hash_Table_Linear_Probing", "dataSetB", show)
+plotDataSet("Hash_Table_Quadratic_Probing", "dataSetA", show)
+plotDataSet("Hash_Table_Quadratic_Probing", "dataSetB", show)
+plotDataSet("Hash_Table_Chaining", "dataSetA", show)
+plotDataSet("Hash_Table_Chaining", "dataSetB", show)
